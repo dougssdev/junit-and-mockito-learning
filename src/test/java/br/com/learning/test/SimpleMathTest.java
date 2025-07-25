@@ -1,15 +1,29 @@
 package br.com.learning.test;
 
 import br.com.learning.math.SimpleMath;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("Test math operations in SimpleMathTest Class")
 public class SimpleMathTest {
+
+    SimpleMath math;
+
+    @BeforeAll
+    static void setup(){
+        System.out.println("Running @BeforeAll method");
+    }
+
+    @AfterAll
+    static void cleanup(){
+        System.out.println("Running @AfterAll method");
+    }
+
+    @BeforeEach
+    void beforeEachMethod(){
+         math = new SimpleMath();
+    }
 
     //test[System under test]_[Condition or State change]_[ExpectedResult]
     @Test
@@ -17,7 +31,7 @@ public class SimpleMathTest {
     void testSum(){
 
         //Given
-        SimpleMath math = new SimpleMath();
+
         Double firstNumber = 25D;
         Double secondNumber = 75D;
 
@@ -36,7 +50,7 @@ public class SimpleMathTest {
     @Test
     @DisplayName("Test 23 - 13 = 10")
     void testSubtract(){
-        SimpleMath math = new SimpleMath();
+
         Double firstNumber = 23D;
         Double secondNumber = 13D;
 
@@ -50,7 +64,8 @@ public class SimpleMathTest {
     @Test
     @DisplayName("Test 2 * 5 = 10")
     void testMultiply(){
-        SimpleMath math = new SimpleMath();
+
+
         Double firstNumber = 2D;
         Double secondNumber = 5D;
 
@@ -68,7 +83,7 @@ public class SimpleMathTest {
     @Test
     @DisplayName("Test 5/2 = 2.5")
     void testDivide(){
-        SimpleMath math = new SimpleMath();
+
         Double firstNumber = 5D;
         Double secondNumber = 2D;
 
@@ -80,7 +95,7 @@ public class SimpleMathTest {
     @DisplayName("Test if (10+20)/2 = 15")
     void testMean(){
 
-        SimpleMath math = new SimpleMath();
+
         Double firstNumber = 10D;
         Double secondNumber = 20D;
 
@@ -93,7 +108,7 @@ public class SimpleMathTest {
     @DisplayName("Test if 9 square root equals 3")
     void testSquareRoot(){
 
-        SimpleMath math = new SimpleMath();
+
         Double firstNumber = 9D;
 
         Double result = math.squareRoot(firstNumber);
@@ -101,11 +116,22 @@ public class SimpleMathTest {
         assertEquals(3D, result);
     }
 
-    @Disabled("Work in Progress")
+    //@Disabled("Work in Progress")
     @Test
     @DisplayName("Test if its throwing an exception")
     void testDivide_When_NumberIsDividedByZero_ShouldThrowArithmeticException(){
-        fail();
+
+        Double firstNumber = 10D;
+        Double secondNumber = 0D;
+
+        String expectedMessage = "Impossible to divide by zero";
+
+       ArithmeticException actual =  assertThrows(ArithmeticException.class, () -> {
+            math.divide(firstNumber, secondNumber);
+        }, () -> "Division by zero should throw an ArithmeticException");
+
+       assertEquals(expectedMessage, actual.getMessage(), () -> "Unexpected exception message");
+
     }
 
 }
