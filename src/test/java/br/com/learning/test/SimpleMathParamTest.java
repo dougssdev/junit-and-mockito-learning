@@ -3,8 +3,7 @@ package br.com.learning.test;
 import br.com.learning.math.SimpleMath;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.*;
 
 import java.util.stream.Stream;
 
@@ -22,7 +21,15 @@ public class SimpleMathParamTest {
 
     @DisplayName("Parameterized testing")
     @ParameterizedTest
-    @MethodSource()
+    //@MethodSource()
+    /**
+     * @CsvSource({
+            "9D, 3D, 3D",
+            "30D, 2D, 15D",
+            "100D, 5D, 20D"
+    })
+    */
+    @CsvFileSource(resources = "/testdivision.csv")
     void testDivide(Double firstNumber,Double secondNumber, Double expected ){
 
         Double result = math.divide(firstNumber, secondNumber);
@@ -30,6 +37,15 @@ public class SimpleMathParamTest {
 
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"Juan", "Antonio", "Amen"})
+    void testValueSource(String firstName){
+        System.out.println(firstName);
+        assertNotNull(firstName);
+    }
+
+
+    /**
     public static Stream<Arguments> testDivide(){
         return Stream.of(
                 Arguments.of(9D, 3D, 3D),
@@ -37,7 +53,7 @@ public class SimpleMathParamTest {
                 Arguments.of(100D, 5D, 20D)
         );
     }
-
+    */
 
 
 
