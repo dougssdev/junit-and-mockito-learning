@@ -37,6 +37,7 @@ public class SimpleMathParamTest {
 
     }
 
+    @DisplayName("Testing @ValueSource")
     @ParameterizedTest
     @ValueSource(strings = {"Juan", "Antonio", "Amen"})
     void testValueSource(String firstName){
