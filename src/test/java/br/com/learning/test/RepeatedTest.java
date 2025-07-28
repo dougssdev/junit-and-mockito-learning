@@ -3,10 +3,12 @@ package br.com.learning.test;
 import br.com.learning.math.SimpleMath;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Order;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@Order(3)
 public class RepeatedTest {
 
     SimpleMath math;

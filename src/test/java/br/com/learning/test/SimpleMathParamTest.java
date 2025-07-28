@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.*;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+@Order(2)
 @DisplayName("Test math operations in SimpleMathTest Class")
 public class SimpleMathParamTest {
 

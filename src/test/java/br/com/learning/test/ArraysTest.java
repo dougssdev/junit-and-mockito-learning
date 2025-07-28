@@ -2,12 +2,13 @@ package br.com.learning.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
-
+@Order(5)
 public class ArraysTest {
 
     @Test
